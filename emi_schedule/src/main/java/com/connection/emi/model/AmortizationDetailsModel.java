@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AmortizationDetailsModel {
+	
 	int currentYear;
 	String currentMonth;
 	double emi;

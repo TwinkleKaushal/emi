@@ -16,6 +16,7 @@ public interface IEmiService {
 	 *                   schedule
 	 */
 	public EmiResponseModel GenerateEMI(@Valid EmiModel model);
+
 	/**
 	 * 
 	 * @param p variable to store the value of loan amount

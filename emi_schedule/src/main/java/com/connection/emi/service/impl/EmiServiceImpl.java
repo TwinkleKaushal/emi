@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmiServiceImpl implements IEmiService {
 	@Autowired
 	Gson gson;
-	
+
 	Integer p;
 	Integer t;
 	double r;
@@ -37,6 +37,7 @@ public class EmiServiceImpl implements IEmiService {
 	double tenure;
 	double balance;
 	final DecimalFormat df = new DecimalFormat("0.00");
+
 	/**
 	 * This method is used to calculate EMI
 	 */
@@ -68,11 +69,11 @@ public class EmiServiceImpl implements IEmiService {
 	 *                      after each EMI deposit
 	 */
 	@Override
-	public EmiResponseModel GenerateEMI(EmiModel model)  {
-		
+	public EmiResponseModel GenerateEMI(EmiModel model) {
+
 		LoggingResponseModel msgStart = LoggingResponseModel.builder().message("Service class execution initiated")
-                .build();
-        log.info(gson.toJson(msgStart));
+				.build();
+		log.info(gson.toJson(msgStart));
 		List<AmortizationDetailsModel> Amortizationtable = new ArrayList<>();
 		p = (int) model.getLoanAmount();
 		r = (model.getRateOfInterest() / 12);
@@ -111,12 +112,11 @@ public class EmiServiceImpl implements IEmiService {
 				if (modelDetails.getOutstanding() <= 0)
 					break;
 			}
-			LoggingResponseModel msgEnd = LoggingResponseModel.builder().message("Emi calculated")
-	                .build();
-	        log.info(gson.toJson(msgEnd));
-	        
+			LoggingResponseModel msgEnd = LoggingResponseModel.builder().message("Emi calculated").build();
+			log.info(gson.toJson(msgEnd));
+
 		} catch (NumberFormatException e) {
-			throw new NumberFormatException ("Number should be in numeric format only");
+			throw new NumberFormatException("Number should be in numeric format only");
 		}
 		/**
 		 * Service level object of EmiResponseModel

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class LoggingResponseModel {
+	
 	private HttpStatus statusCode;
 	private String message;
 	private Integer messageTypeId;

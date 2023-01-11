@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmiPauseResponseModel {
+	
 	Integer status;
 	String message;
 	long emi;

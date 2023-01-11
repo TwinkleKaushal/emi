@@ -25,12 +25,13 @@ public class EmiPauseImpl implements IEmiPause {
 	double balance;
 	double increasedInterestIs;
 	double newAmountToPay;
+
 	/**
 	 * This method is used to calculate EMI by using the standard mathematical
 	 * formulae
 	 */
 	@Override
-	public EmiPauseResponseModel calculatedEMIpause(EmiPauseModel pausemodel)  {
+	public EmiPauseResponseModel calculatedEMIpause(EmiPauseModel pausemodel) {
 		log.info("Service class execution initiated");
 		p = pausemodel.getLoanAmount();
 		r = (pausemodel.getRateOfInterest() / 12);
@@ -38,7 +39,8 @@ public class EmiPauseImpl implements IEmiPause {
 		numberOfEMI = pausemodel.getNoOfEmiPaid();
 		totalMoratoriumperiod = pausemodel.getMoratoriumPeriod();
 		if (numberOfEMI >= t) {
-			throw new NoSuchElementException ("Your EMI is already completed or you entered a wrong values, Please check once again!");
+			throw new NoSuchElementException(
+					"Your EMI is already completed or you entered a wrong values, Please check once again!");
 		}
 		calculatedEMI = p * r / 100 * Math.pow(1 + r / 100, t) / (Math.pow(1 + r / 100, t) - 1);
 		amountPay = calculatedEMI * t;

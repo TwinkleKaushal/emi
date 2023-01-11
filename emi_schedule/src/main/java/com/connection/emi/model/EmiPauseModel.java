@@ -13,16 +13,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmiPauseModel {
+
 	@Range(min = 25000, max = 500000000, message = "Please enter value between 25000-50000000")
 	@NotNull(message = "Please enter some loan value")
 	Integer loanAmount;
+
 	@NotNull(message = "Please enter some loan value")
 	@Digits(fraction = 2, integer = 3, message = "Please enter valid rate of interest i.e. only two decimal digits are allowed")
 	double rateOfInterest;
+
 	@NotNull(message = "Please enter some loan value")
 	Integer tenure;
+
 	@NotNull(message = "Please enter some loan value")
 	Integer noOfEmiPaid;
+
 	@NotNull(message = "Please enter some loan value")
 	Integer moratoriumPeriod;
 }

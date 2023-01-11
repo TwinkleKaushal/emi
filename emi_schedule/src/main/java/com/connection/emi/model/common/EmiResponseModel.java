@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "build")
 public class EmiResponseModel {
+	
 	Integer status;
 	String message;
 	long emi;

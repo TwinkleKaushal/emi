@@ -12,7 +12,7 @@ import com.connection.emi.service.IEmiPause;
 
 @SpringBootTest
 class EmiPauseserviceTest {
-	
+
 	@Autowired
 	IEmiPause emipause;
 

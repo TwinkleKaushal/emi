@@ -74,7 +74,6 @@ public class GlobalExceptionHandler {
                 .messageTypeId(MessageTypeConstant.ERROR.getMessage())
                 .statusCode(HttpStatus.UNPROCESSABLE_ENTITY)
                 .build()));
-		
 		return new ResponseEntity<>(ve, HttpStatus.NOT_FOUND);
 	}
 

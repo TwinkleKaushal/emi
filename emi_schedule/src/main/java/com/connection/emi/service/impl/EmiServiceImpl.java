@@ -7,12 +7,15 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.connection.emi.model.AmortizationDetailsModel;
 import com.connection.emi.model.EmiModel;
 import com.connection.emi.model.common.EmiResponseModel;
+import com.connection.emi.model.common.LoggingResponseModel;
 import com.connection.emi.service.IEmiService;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class EmiServiceImpl implements IEmiService {
+	@Autowired
+	Gson gson;
+	
 	Integer p;
 	Integer t;
 	double r;
@@ -63,7 +69,10 @@ public class EmiServiceImpl implements IEmiService {
 	 */
 	@Override
 	public EmiResponseModel GenerateEMI(EmiModel model)  {
-		log.info("Service class execution initiated");
+		
+		LoggingResponseModel msgStart = LoggingResponseModel.builder().message("Service class execution initiated")
+                .build();
+        log.info(gson.toJson(msgStart));
 		List<AmortizationDetailsModel> Amortizationtable = new ArrayList<>();
 		p = (int) model.getLoanAmount();
 		r = (model.getRateOfInterest() / 12);
@@ -102,11 +111,12 @@ public class EmiServiceImpl implements IEmiService {
 				if (modelDetails.getOutstanding() <= 0)
 					break;
 			}
-
-			log.info("Emi calculated");
-			log.info("execution completed");
-		} catch (Exception e) {
-			log.error("Error in service class implementation", e);
+			LoggingResponseModel msgEnd = LoggingResponseModel.builder().message("Emi calculated")
+	                .build();
+	        log.info(gson.toJson(msgEnd));
+	        
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException ("Number should be in numeric format only");
 		}
 		/**
 		 * Service level object of EmiResponseModel
